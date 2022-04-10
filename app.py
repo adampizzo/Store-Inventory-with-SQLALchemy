@@ -1,5 +1,6 @@
 from dataclasses import field
 from datetime import datetime, timezone
+from importlib.resources import path
 from models import (Base, session, Inventory, engine)
 import datetime
 import csv
@@ -88,46 +89,21 @@ def clean_qty(qty_str):
     else:
         return item_qty
 
+
 def get_qty():
     while True:
         qty = input('Quantity of Item Available: ')
         qty = clean_qty(qty)
         if type(qty) == int:
             return qty
-        
+
+
 def get_price():
     while True:
         price = input('Price of Each Item (Ex: $5.99): ')
         price = clean_price(price)
         if type(price) == int:
             return price
-
-# def compare_items(db_item, other_item):
-#     if db_item == None:
-#         name = other_item[0]
-#         price = clean_price(other_item[1])
-#         qty = int(other_item[2])
-#         date = clean_date(other_item[3])
-#         new_item = Inventory(product_name=name, product_price=price, product_qty=qty, date_updated=date)
-#         session.add(new_item)
-#         session.commit()
-#         logging.info(f'New item added to database: {new_item}.')
-#     elif db_item.date_updated > clean_date(other_item[3]):
-#         logging.info(
-#             f'"{db_item.product_name}" already exists in the database and a more recent item exists in the database. Discarding item.')
-#     elif db_item.date_updated < clean_date(other_item[3]):
-#         logging.info(f'***** REPLACING Item *****')
-#         logging.info(f'\tOld Item: Name: {db_item.product_name}, ID: {db_item.product_id}, Price: {db_item.product_price}, Quantity: {db_item.product_qty}, Date Updated: {db_item.date_updated}.')
-#         logging.info(f'\tNew Item: Name: {other_item[0]}, ID: {db_item.product_id}, Price: {clean_price(other_item[1])}, Quantity: {int(other_item[2])}, Date Updated: {clean_date(other_item[3])}.')
-#         db_item.product_name = other_item[0]
-#         db_item.product_price = clean_price(other_item[1])
-#         db_item.product_qty = int(other_item[2])
-#         db_item.date_updated = clean_date(other_item[3])
-#         session.commit()
-#         logging.info(
-#             f'{db_item.product_name} successfully updated.')
-#     else:
-#         logging.info(f'"{db_item.product_name}" already exists in the database and no other entries detected. Discarding item.')
 
 
 def display_inventory():
@@ -201,6 +177,11 @@ def item_in_invetory(item):
 def backup_inventory():
     current_time = datetime.datetime.now(timezone.utc).strftime('%Y-%m-%d-%H-%M-%S')
     full_db = session.query(Inventory).all()
+    print(f'''
+        \n****** BACKUP IN PROGRESS *******
+        \rPlease wait...''')
+    time.sleep(2)
+    
     with open(f'db\\backup\\backup-{current_time}.csv', 'w', newline='') as bk_csv:
         fieldnames = ['product_name', 'product_price',
                     'product_quantity', 'date_updated']
@@ -219,6 +200,10 @@ def backup_inventory():
                 }
             )
         writer.writerows(rows)
+    print(f'''
+        \n****** BACKUP COMPLETED ******
+        \rBack successfully made at {datetime.datetime.now(timezone.utc).strftime('%m-%d-%Y %H:%M:%S %Z')}.''')
+    input('Press enter to return to the main menu...')
 
 
 
@@ -227,8 +212,6 @@ def add_csv(path):
         data = csv.reader(csv_file)
         # Modified from code at: https://linuxhint.com/skip-header-row-csv-python/
         next(data)
-        
-        
         for row in data:
             item_list = []
             for item in session.query(Inventory).with_entities(Inventory.product_name).all():
@@ -265,15 +248,60 @@ def add_csv(path):
                     logging.info(
                         f'"{db_item.product_name}" already exists in the database and is the latest entry. Discarding item.')
 
+def add_csv_path():
+    continue_adding = True
+    while continue_adding:
+        try:
+            csv_path = input(f'''
+                \n****** ADDING CSV FILE TO DATABASE ******
+                \rPlease enter the path of the CSV file that you want to add.
+                \rThe path should be either relative from your current file level, or absolute:
+                \rRelative Example: "db/backup/backup.csv"
+                \rAbsolute Example: C:\\User\\Example\\Documents\\store-inventory\\inventory.csv
+                \r******************************************\n>''')
+            add_csv(csv_path)
+        except FileNotFoundError:
+            print(f'''
+                \n****** FILE NOT FOUND ERROR ******
+                \rThat path did not lead to a file.
+                \rThe path should be either relative from your current file level, or absolute:
+                \rRelative Example: "db/backup/backup.csv"
+                \rAbsolute Example: "C:\\User\\Example\\Documents\\store-inventory\\inventory.csv"
+                \r**********************************''')
+            input("\nPress enter to try again...")
+        else:
+            print('\n****** CSV ADDED SUCCESSFULLY ******')
+            valid_choices = ['a', 'b']
+            choice_error = True
+            while choice_error:
+                choice = input(f'''
+                    \nDo you want to add another CSV to the database?
+                    \na)Yes
+                    \rb)No, return to main menu
+                    \n>''')
+                if choice not in valid_choices:
+                    print(f'''
+                        \n****** INVALID CHOICE ******
+                        \r{choice} is not a valid choice.
+                        \rPlease enter a choice from the list below:
+                        \r{valid_choices}''')
+                    input('Press enter to try again...')
+                elif choice == 'a':
+                    choice_error = False
+                else:
+                    continue_adding = False
+                    choice_error = False
+
 def menu():
     while True:
-        valid_choices = ['p', 'v', 'a', 'b', 'x']
+        valid_choices = ['p', 'v', 'a', 'b', 'c', 'x']
         print('''
             \n***** STORE INVENTORY SYSTEM *****
             \rp) Print all items in the database
             \rv) View a single product's inventory
             \ra) Add a new product to the database
             \rb) Make a backup of the entire inventory
+            \rc) Add a csv file from a relative path
             \rx) Exit''')
         choice = input('What would you like to do? ')
         if choice in valid_choices:
@@ -301,6 +329,9 @@ def app():
         elif user_choice == 'b':
             # "Make a backup of the entire inventory"
             backup_inventory()
+        elif user_choice == 'c':
+            # "Add csv by path"
+            add_csv_path()
         elif user_choice == 'x':
             # "Exit Program"
             print("Thank you for utilizing the store inventory system. Have a good day!")
@@ -310,9 +341,6 @@ def app():
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    # app()
-
-    #add_csv('db\\backup\\backup-04102022.csv')
-    backup_inventory()
+    app()
 
 
