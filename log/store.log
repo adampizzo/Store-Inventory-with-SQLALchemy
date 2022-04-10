@@ -1,0 +1,87 @@
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Bagel - Whole White Sesame, Product Quantity: 97, Product Price: $430, Last Updated: 2018-11-01.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Sauce - Caesar Dressing, Product Quantity: 81, Product Price: $805, Last Updated: 2018-12-28.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Shiratamako - Rice Flour, Product Quantity: 71, Product Price: $799, Last Updated: 2018-03-07.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Tart - Raisin And Pecan, Product Quantity: 86, Product Price: $106, Last Updated: 2019-01-18.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Radish, Product Quantity: 22, Product Price: $247, Last Updated: 2018-11-06.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Juice - V8 Splash, Product Quantity: 67, Product Price: $125, Last Updated: 2018-01-10.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Red Currants, Product Quantity: 49, Product Price: $677, Last Updated: 2018-10-01.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Soup - Base Broth Beef, Product Quantity: 62, Product Price: $544, Last Updated: 2019-03-09.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Tomatoes Tear Drop Yellow, Product Quantity: 73, Product Price: $64, Last Updated: 2019-02-09.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Mussels - Cultivated, Product Quantity: 24, Product Price: $934, Last Updated: 2018-07-31.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Bread - Crumbs, Bulk, Product Quantity: 88, Product Price: $449, Last Updated: 2019-01-12.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Beans - Long, Chinese, Product Quantity: 47, Product Price: $473, Last Updated: 2018-09-22.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Beans - Navy, Dry, Product Quantity: 44, Product Price: $459, Last Updated: 2018-01-20.
+04-10-2022 03:45 UTC INFO ***** REPLACING Item *****
+04-10-2022 03:45 UTC INFO 	Old Item: Name: Juice - V8 Splash, ID: 6, Price: 125, Quantity: 67, Date Updated: 2018-01-10.
+04-10-2022 03:45 UTC INFO 	New Item: Name: Juice - V8 Splash, ID: 6, Price: 114, Quantity: 67, Date Updated: 2018-01-13.
+04-10-2022 03:45 UTC INFO Juice - V8 Splash successfully updated.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Basil - Dry, Rubbed, Product Quantity: 21, Product Price: $869, Last Updated: 2018-02-04.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Apple - Granny Smith, Product Quantity: 72, Product Price: $505, Last Updated: 2018-01-12.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Lid - High Heat, Super Clear, Product Quantity: 5, Product Price: $123, Last Updated: 2018-02-09.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Oranges - Navel, Product Quantity: 46, Product Price: $478, Last Updated: 2018-06-06.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Berry Brulee, Product Quantity: 50, Product Price: $759, Last Updated: 2018-08-25.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Lobster - Canned Premium, Product Quantity: 57, Product Price: $761, Last Updated: 2018-04-15.
+04-10-2022 03:45 UTC INFO ***** REPLACING Item *****
+04-10-2022 03:45 UTC INFO 	Old Item: Name: Sauce - Caesar Dressing, ID: 2, Price: 805, Quantity: 81, Date Updated: 2018-12-28.
+04-10-2022 03:45 UTC INFO 	New Item: Name: Sauce - Caesar Dressing, ID: 2, Price: 825, Quantity: 16, Date Updated: 2019-04-10.
+04-10-2022 03:45 UTC INFO Sauce - Caesar Dressing successfully updated.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Ham - Procutinni, Product Quantity: 8, Product Price: $570, Last Updated: 2019-01-09.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Veal - Ground, Product Quantity: 5, Product Price: $767, Last Updated: 2018-12-19.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Oil - Cooking Spray, Product Quantity: 6, Product Price: $420, Last Updated: 2018-06-11.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Extract - Vanilla,artificial, Product Quantity: 20, Product Price: $291, Last Updated: 2018-06-08.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Mushroom - Porcini, Dry, Product Quantity: 71, Product Price: $814, Last Updated: 2018-07-26.
+04-10-2022 03:45 UTC INFO New item added to database: Product Name: Wine - Chateau Bonnet, Product Quantity: 54, Product Price: $741, Last Updated: 2018-03-10.
+04-10-2022 03:50 UTC INFO "Bagel - Whole White Sesame" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Sauce - Caesar Dressing" already exists in the database and a more recent item exists in the database. Discarding item.
+04-10-2022 03:50 UTC INFO "Shiratamako - Rice Flour" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Tart - Raisin And Pecan" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Radish" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Juice - V8 Splash" already exists in the database and a more recent item exists in the database. Discarding item.
+04-10-2022 03:50 UTC INFO "Red Currants" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Soup - Base Broth Beef" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Tomatoes Tear Drop Yellow" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Mussels - Cultivated" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Bread - Crumbs, Bulk" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Beans - Long, Chinese" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Beans - Navy, Dry" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Juice - V8 Splash" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Basil - Dry, Rubbed" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Apple - Granny Smith" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Lid - High Heat, Super Clear" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Oranges - Navel" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Berry Brulee" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Lobster - Canned Premium" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Sauce - Caesar Dressing" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Ham - Procutinni" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Veal - Ground" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Oil - Cooking Spray" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Extract - Vanilla,artificial" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Mushroom - Porcini, Dry" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:50 UTC INFO "Wine - Chateau Bonnet" already exists in the database and no other entries detected. Discarding item.
+04-10-2022 03:51 UTC INFO "Bagel - Whole White Sesame" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Sauce - Caesar Dressing" already exists in the database and a more recent item exists in the database. Discarding item.
+04-10-2022 03:51 UTC INFO "Shiratamako - Rice Flour" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Tart - Raisin And Pecan" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Radish" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Juice - V8 Splash" already exists in the database and a more recent item exists in the database. Discarding item.
+04-10-2022 03:51 UTC INFO "Red Currants" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Soup - Base Broth Beef" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Tomatoes Tear Drop Yellow" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Mussels - Cultivated" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Bread - Crumbs, Bulk" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Beans - Long, Chinese" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Beans - Navy, Dry" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Juice - V8 Splash" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Basil - Dry, Rubbed" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Apple - Granny Smith" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Lid - High Heat, Super Clear" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Oranges - Navel" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Berry Brulee" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Lobster - Canned Premium" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Sauce - Caesar Dressing" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Ham - Procutinni" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Veal - Ground" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Oil - Cooking Spray" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Extract - Vanilla,artificial" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Mushroom - Porcini, Dry" already exists in the database and is the latest entry. Discarding item.
+04-10-2022 03:51 UTC INFO "Wine - Chateau Bonnet" already exists in the database and is the latest entry. Discarding item.
