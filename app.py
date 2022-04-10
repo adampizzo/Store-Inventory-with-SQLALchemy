@@ -1,3 +1,4 @@
+from dataclasses import field
 from datetime import datetime, timezone
 from models import (Base, session, Inventory, engine)
 import datetime
@@ -198,11 +199,31 @@ def item_in_invetory(item):
 
 
 def backup_inventory():
-    pass
+    current_time = datetime.datetime.now(timezone.utc).strftime('%Y-%m-%d-%H-%M-%S')
+    full_db = session.query(Inventory).all()
+    with open(f'db\\backup\\backup-{current_time}.csv', 'w', newline='') as bk_csv:
+        fieldnames = ['product_name', 'product_price',
+                    'product_quantity', 'date_updated']
+        writer = csv.DictWriter(bk_csv, delimiter=',', fieldnames=fieldnames)
+        writer.writeheader()
+        rows = []
+        for item in full_db:
+            formatted_price = f'${item.product_price/100}'  # Convert price to original csv format
+            formatted_date = item.date_updated.strftime('%m/%d/%Y')  # Converts date to original csv format
+            rows.append(
+                {
+                    'product_name': item.product_name,
+                    'product_price': formatted_price,
+                    'product_quantity': item.product_qty,
+                    'date_updated': formatted_date
+                }
+            )
+        writer.writerows(rows)
 
 
-def add_csv():
-    with open('store-inventory\inventory.csv') as csv_file:
+
+def add_csv(path):
+    with open(path) as csv_file:
         data = csv.reader(csv_file)
         # Modified from code at: https://linuxhint.com/skip-header-row-csv-python/
         next(data)
@@ -279,7 +300,7 @@ def app():
             add_item_to_inventory()
         elif user_choice == 'b':
             # "Make a backup of the entire inventory"
-            pass
+            backup_inventory()
         elif user_choice == 'x':
             # "Exit Program"
             print("Thank you for utilizing the store inventory system. Have a good day!")
@@ -289,5 +310,9 @@ def app():
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    app()
+    # app()
+
+    #add_csv('db\\backup\\backup-04102022.csv')
+    backup_inventory()
+
 
