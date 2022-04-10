@@ -14,6 +14,7 @@ logging.Formatter.converter = time.gmtime # From https://docs.python.org/3/libra
 class NotInListError(Exception):
     pass
 
+
 def clean_price(price_str):
     try:
         split_price = price_str.split('$')
@@ -164,6 +165,7 @@ def add_item_to_inventory():
         print(f'\n{db_item.product_name} has been updated successfully\n')
     input("Press enter to return to the main menu...")
 
+
 def item_in_invetory(item):
     db_list = []
     for obj in session.query(Inventory).with_entities(Inventory.product_name).all():
@@ -206,7 +208,6 @@ def backup_inventory():
     input('Press enter to return to the main menu...')
 
 
-
 def add_csv(path):
     with open(path) as csv_file:
         data = csv.reader(csv_file)
@@ -247,6 +248,7 @@ def add_csv(path):
                 else:
                     logging.info(
                         f'"{db_item.product_name}" already exists in the database and is the latest entry. Discarding item.')
+
 
 def add_csv_path():
     continue_adding = True
@@ -291,6 +293,7 @@ def add_csv_path():
                 else:
                     continue_adding = False
                     choice_error = False
+
 
 def menu():
     while True:
