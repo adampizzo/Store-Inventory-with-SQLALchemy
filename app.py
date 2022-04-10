@@ -1,6 +1,4 @@
-from ast import In
 from datetime import datetime, timezone
-from tkinter import Y
 from models import (Base, session, Inventory, engine)
 import datetime
 import csv
@@ -89,6 +87,19 @@ def clean_qty(qty_str):
     else:
         return item_qty
 
+def get_qty():
+    while True:
+        qty = input('Quantity of Item Available: ')
+        qty = clean_qty(qty)
+        if type(qty) == int:
+            return qty
+        
+def get_price():
+    while True:
+        price = input('Price of Each Item (Ex: $5.99): ')
+        price = clean_price(price)
+        if type(price) == int:
+            return price
 
 # def compare_items(db_item, other_item):
 #     if db_item == None:
@@ -147,36 +158,43 @@ def search_inventory_by_id():
 
 
 def add_item_to_inventory():
+    # set current time
+    current_time = datetime.datetime.now(timezone.utc)
+    current_time = current_time.strftime('%Y-%m-%d')
     # ask for name
     name = input('Name of Item: ')
-    # ask for qty
-    qty_error = True
-    while qty_error:
-        qty = input('Quantity of Item Available: ')
-        qty = clean_qty(qty)
-        if type(qty) == int:
-            qty_error = False
-    # ask for price
-    price_error = True
-    while price_error:
-        price = input('Price of Each Item (Ex: $5.99): ')
-        price = clean_price(price)
-        if type(price) == int:
-            price_error = False
-    # datetime.now
-    # derived from Tim Richardson at https://stackoverflow.com/questions/15940280/how-to-get-utc-time-in-python
-    current_time = datetime.datetime.now(timezone.utc).strftime('%Y-%d-%m')
-    
-    new_item = Inventory(product_name=name, product_qty=qty, product_price=price, date_updated=current_time)
-    session.add(new_item)
-    session.commit()
-    print(f'\n{new_item.product_name} has been successfully added to the database!')
+    if not item_in_invetory(name):
+        print('Adding new items...')
+        time.sleep(1)
+        # ask for qty
+        qty = get_qty()
+        # ask for price
+        price = get_price()
+        new_item = Inventory(product_name=name, product_qty=qty, product_price=price,
+                            date_updated=datetime.datetime.strptime(current_time, "%Y-%m-%d"))
+        session.add(new_item)
+        session.commit()
+        print(f'\n{new_item.product_name} has been successfully added to the database!\n')
+    else:
+        print('Modifying existing item...')
+        db_item = session.query(Inventory).filter(Inventory.product_name==name).first()
+        db_item.product_name = input('Product Name: ')
+        db_item.product_qty = get_qty()
+        db_item.product_price = get_price()
+        db_item.date_updated = datetime.datetime.strptime(
+            current_time, "%Y-%m-%d")
+        session.commit()
+        print(f'\n{db_item.product_name} has been updated successfully\n')
+    input("Press enter to return to the main menu...")
 
-def replace_existing_item():
-    pass
-
-def item_in_invetory():
-    pass
+def item_in_invetory(item):
+    db_list = []
+    for obj in session.query(Inventory).with_entities(Inventory.product_name).all():
+        db_list.append(obj.product_name)
+    if item in db_list:
+        return True
+    else:
+        return False
 
 
 def backup_inventory():
@@ -253,14 +271,12 @@ def app():
         if user_choice == 'p':
             # "View all items in the database"
             display_inventory()
-
         elif user_choice == 'v':
             # "View a single product's inventory"
             search_inventory_by_id()
-            
         elif user_choice == 'a':
             # "Add a new product to the database"
-            pass
+            add_item_to_inventory()
         elif user_choice == 'b':
             # "Make a backup of the entire inventory"
             pass
@@ -273,6 +289,5 @@ def app():
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    # add_csv()
-    # app()
+    app()
 
