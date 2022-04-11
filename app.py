@@ -1,6 +1,7 @@
 from dataclasses import field
 from datetime import datetime, timezone
 from importlib.resources import path
+import os
 from models import (Base, session, Inventory, engine)
 import datetime
 import csv
@@ -177,6 +178,13 @@ def item_in_invetory(item):
 
 
 def backup_inventory():
+    dir_exists = os.path.isdir('db\\backup')
+    
+    if dir_exists == False:
+        print("Creating Backup folder...")
+        time.sleep(1.5)
+        os.mkdir('db\\backup')
+    
     current_time = datetime.datetime.now(timezone.utc).strftime('%Y-%m-%d-%H-%M-%S')
     full_db = session.query(Inventory).all()
     print(f'''
