@@ -8,9 +8,13 @@ import csv
 import time
 import logging
 
-logging.basicConfig(filename='log\store.log', encoding='utf-8', level=logging.DEBUG,
-                    format='%(asctime)s %(levelname)s %(message)s', datefmt='%m-%d-%Y %H:%M UTC')
-logging.Formatter.converter = time.gmtime # From https://docs.python.org/3/library/logging.html
+def start_log():
+    dir_exists = os.path.isdir('log')
+    if not dir_exists:
+        os.mkdir('log')
+    logging.basicConfig(filename='log\store.log', encoding='utf-8', level=logging.DEBUG,
+            format='%(asctime)s %(levelname)s %(message)s', datefmt='%m-%d-%Y %H:%M UTC')
+    logging.Formatter.converter = time.gmtime # From https://docs.python.org/3/library/logging.html
 
 class NotInListError(Exception):
     pass
@@ -153,6 +157,7 @@ def add_item_to_inventory():
                             date_updated=datetime.datetime.strptime(current_time, "%Y-%m-%d"))
         session.add(new_item)
         session.commit()
+        logging.info(f'{new_item.product_name} added to inventory.')
         print(f'\n{new_item.product_name} has been successfully added to the database!\n')
     else:
         print('Modifying existing item...')
@@ -163,6 +168,7 @@ def add_item_to_inventory():
         db_item.date_updated = datetime.datetime.strptime(
             current_time, "%Y-%m-%d")
         session.commit()
+        logging.info(f'{db_item.product_name} modified in database.')
         print(f'\n{db_item.product_name} has been updated successfully\n')
     input("Press enter to return to the main menu...")
 
@@ -180,7 +186,7 @@ def item_in_invetory(item):
 def backup_inventory():
     dir_exists = os.path.isdir('db\\backup')
     
-    if dir_exists == False:
+    if not dir_exists:
         print("Creating Backup folder...")
         time.sleep(1.5)
         os.mkdir('db\\backup')
@@ -210,9 +216,10 @@ def backup_inventory():
                 }
             )
         writer.writerows(rows)
+        logging.info(f'Backup of database created successfully.')
     print(f'''
         \n****** BACKUP COMPLETED ******
-        \rBack successfully made at {datetime.datetime.now(timezone.utc).strftime('%m-%d-%Y %H:%M:%S %Z')}.''')
+        \rBack successfully made at {datetime.datetime.now(timezone.utc).strftime('%m-%d-%Y %H:%M:%S %Z')}.''')    
     input('Press enter to return to the main menu...')
 
 
@@ -280,6 +287,7 @@ def add_csv_path():
                 \r**********************************''')
             input("\nPress enter to try again...")
         else:
+            logging.info(f'File successfully added.')
             print('\n****** CSV ADDED SUCCESSFULLY ******')
             valid_choices = ['a', 'b']
             choice_error = True
@@ -352,6 +360,7 @@ def app():
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
+    start_log()
     app()
 
 
